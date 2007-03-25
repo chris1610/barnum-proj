@@ -1,0 +1,9 @@
+com
+edu
+us
+eu
+org
+net
+tv
+info
+gov

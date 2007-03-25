@@ -1,0 +1,69 @@
+What is Barnum?
+===============
+
+Barnum is a python-based application for quickly and easily creating 
+pseudo-random data typically used for application testing.
+
+Why did you create Barnum?
+==========================
+
+I am developing a shopping cart application in Django and realized that I 
+needed a bunch of data to simulate the store's behavior under somewhat normal 
+production usage.  
+
+I got tired of always trying to think of names and addresses for customers and 
+so decided to automate the process a little bit.  Such was born Barnum.
+
+Why is Barnum unique?
+=====================
+
+I was able to find some online systems for generating large amounts of test 
+data.  I could not find any application that had the breadth of data generation 
+capabilities nor the ability to easily interface with Django in the way I 
+wanted to.
+
+One of the most unique aspects of Barnum is that the data is what I'll call
+"plausible."  For example, here's an example "identity" randomly generated
+from Barnum -
+    Sid Seymour
+    10 Kimbrough Grove Drive
+    Arthur ND, 58006
+    (701)642-6471
+
+    Who works at:
+    Network Hardware Co as a Personnel Clerk Senior
+
+You should notice a couple of things about this data.
+ - There's a realistic first and last name
+ - The street names are also plausible
+ - Arthur, ND is a real city and the zip code is 58006
+ - 701 is an area code used for North Dakota 
+ - The fictional company is somewhat reasonable.
+ - The job position also makes sense.
+
+Why not just use Random to create strings of letters?
+=====================================================
+
+Well, I find that when testing applications, if it's just a random string
+of numbers of letters, it gets hard to tell if something is out of place
+or "looks wrong."  If you'd like to jus generate totally random information,
+then you probably don't need Barnum!
+
+What type of information does Barnum generate?
+==============================================
+
+Here's a list of types of dummy data Barnum can create:
+ - First name and/or last name in either gender
+ - Job title
+ - Phone number
+ - Street number and name
+ - Zip code plus city & state
+ - Company name
+ - Credit card number and type
+ - Dates
+ - Email addresses
+ - Sample password
+ - Words (latin)
+ - Sentences and/or paragraphs of random latin words
+
+

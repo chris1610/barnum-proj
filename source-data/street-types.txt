@@ -1,0 +1,9 @@
+lane
+way
+avenue
+street
+circle
+drive
+trail
+cove
+parkway
