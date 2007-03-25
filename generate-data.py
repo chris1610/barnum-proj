@@ -24,7 +24,6 @@ import gencc
 import calendar
 import datetime
 import genpw
-import markov2
 
 gender_options=('Male','Female')
 company_type = ('LawFirm', 'Generic', 'Short')
