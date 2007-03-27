@@ -124,6 +124,19 @@ I pulled sample data and existing scripts from a bunch of different sources.
 - Credit Card generator is from Graham King - http://www.darkcoding.net/index.php/credit-card-numbers/
 - Password generator is from Pradeep Kishore Gowda via the Python Cookbook
 
+How can I add more data?
+========================
+
+If all you'd like to do is add some more seed data to an existing source, edit the appropriate
+file in the source-data directory and execute the convert_data.py script to create a new
+pickle file.
+
+How can I contribute?
+=====================
+
+Just ask. I can't forsee this script needing it's own mailing list so right now, use the ticket
+system on google code to submit a ticket with your suggestion/patch.
+
 Why is this so US focused?
 ==========================
 
