@@ -24,12 +24,15 @@ import gencc
 import calendar
 import datetime
 import genpw
+import os
+
+DIRNAME = os.path.dirname(__file__)
 
 gender_options=('Male','Female')
 company_type = ('LawFirm', 'Generic', 'Short')
 card_types = ('mastercard', 'visa', 'discover', 'amex')
 
-source_file = open("source-data.pkl",'rb')
+source_file = open(os.path.join(DIRNAME,"source-data.pkl"),'rb')
 all_zips = pickle.load(source_file)
 state_area_codes = pickle.load(source_file)
 last_names = pickle.load(source_file)
