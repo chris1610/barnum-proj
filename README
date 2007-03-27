@@ -46,7 +46,7 @@ Why not just use Random to create strings of letters?
 
 Well, I find that when testing applications, if it's just a random string
 of numbers of letters, it gets hard to tell if something is out of place
-or "looks wrong."  If you'd like to jus generate totally random information,
+or "looks wrong."  If you'd like to just generate totally random information,
 then you probably don't need Barnum!
 
 What type of information does Barnum generate?
@@ -59,11 +59,23 @@ Here's a list of types of dummy data Barnum can create:
  - Street number and name
  - Zip code plus city & state
  - Company name
- - Credit card number and type
+ - Credit card number and type (with valid checksum)
  - Dates
  - Email addresses
  - Sample password
  - Words (latin)
  - Sentences and/or paragraphs of random latin words
+
+How do I use it?
+================
+
+The gen_data.py script is the primary showcase for how to create random data
+using Barnum.  If you run it from the command line:
+
+ python gen_data.py
+ 
+You'll see some sample data output.
+
+If you'd like to call it from another script, here's an example or two:
 
 

@@ -27,6 +27,7 @@ import genpw
 
 gender_options=('Male','Female')
 company_type = ('LawFirm', 'Generic', 'Short')
+card_types = ('mastercard', 'visa', 'discover', 'amex')
 
 source_file = open("source-data.pkl",'rb')
 all_zips = pickle.load(source_file)
@@ -142,6 +143,13 @@ def create_company_name(biz_type=None):
             name.append(random.choice(company_names))
     return " ".join(name)
 
+def cc_number(card_type=None, length=None, num=1):
+    if not card_type:
+        card_type = random.choice(card_types)
+    prefix_list = "gencc." + card_type + "PrefixList"
+    length = 16
+    return(card_type, gencc.credit_card_number(eval(prefix_list), length, num))
+
 if __name__ == "__main__":
     first, last = create_name()
     add = create_street()
@@ -153,8 +161,8 @@ if __name__ == "__main__":
     print phone
     print create_sentence(), "\n"
     print create_paragraphs(num=3)
-    mastercard = gencc.credit_card_number(gencc.mastercardPrefixList, 16, 1)
-    print "Mastercard", mastercard[0]
+    cc = cc_number()
+    print cc
     expiry = create_date(max_years_future=3)
     print expiry.strftime("%m/%y")
     print create_email()
