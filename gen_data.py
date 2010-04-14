@@ -25,8 +25,13 @@ import calendar
 import datetime
 import genpw
 import os
+import sys
 
-DIRNAME = os.path.dirname(__file__)
+# In Windows, sometimes __file__ is undefined
+try:
+    DIRNAME = os.path.dirname(__file__)
+except NameError:
+    DIRNAME = os.path.dirname(sys.argv[0])
 
 gender_options=('Male','Female')
 company_type = ('LawFirm', 'Generic', 'Short')
@@ -115,6 +120,14 @@ def create_date(numeric=True, past=False, max_years_future=10, max_years_past=10
     random_date = start + datetime.timedelta(days=random_days)    
     return(random_date)
 
+def create_birthday(min_age=18, max_age=80):
+    """
+    Create a random birthday fomr someone between the ages of min_age and max_age
+    """
+    age = random.randint(min_age, max_age)
+    start = datetime.date.today() - datetime.timedelta(days=random.randint(0, 365))
+    return start - datetime.timedelta(days=age*365)
+
 def create_email(tld=None):
     if not tld:
         tld = random.choice(email_domains)
@@ -172,6 +185,6 @@ if __name__ == "__main__":
     print "Password: ", genpw.nicepass()
     print create_company_name()
     print create_job_title()
-
+    print "Born on %s" % create_birthday().strftime("%m/%d/%Y")
 
 
