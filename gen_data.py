@@ -105,7 +105,7 @@ def create_date(numeric=True, past=False, max_years_future=10, max_years_past=10
     """
     Create a random valid date
     If past, then dates can be in the past
-    If into the futrue, then no more than max_years into the future
+    If into the future, then no more than max_years into the future
     If it's not, then it can't be any older than max_years_past
     """
     if past:
@@ -128,17 +128,14 @@ def create_birthday(min_age=18, max_age=80):
     start = datetime.date.today() - datetime.timedelta(days=random.randint(0, 365))
     return start - datetime.timedelta(days=age*365)
 
-def create_email(tld=None):
+def create_email(tld=None, name=None):
+    if not name:
+        name = create_name()
     if not tld:
         tld = random.choice(email_domains)
-    gender = random.choice(gender_options)
-    if gender == "Male":
-        first_name = random.choice(male_first_names)
-    else:
-        first_name = random.choice(female_first_names)
-    user = first_name + "." + random.choice(last_names)
+    user_choices = ["%s.%s" % (name[0],name[1]), "%s" % name[0], "%s.%s" % (name[0][:1], name[1])]
     domain = random.choice(latin_words) + random.choice(latin_words)
-    return ("%s@%s.%s" % (user, domain, tld))
+    return ("%s@%s.%s" % (random.choice(user_choices), domain, tld))
 
 def create_company_name(biz_type=None):
     name = []
@@ -181,7 +178,7 @@ if __name__ == "__main__":
     print cc
     expiry = create_date(max_years_future=3)
     print expiry.strftime("%m/%y")
-    print create_email()
+    print create_email(name=(first,last))
     print "Password: ", genpw.nicepass()
     print create_company_name()
     print create_job_title()
