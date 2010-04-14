@@ -50,6 +50,7 @@ email_domains = pickle.load(source_file)
 job_titles = pickle.load(source_file)
 company_names = pickle.load(source_file)
 company_types = pickle.load(source_file)
+noun_list = pickle.load(source_file)
 
 source_file.close()
 
@@ -100,6 +101,15 @@ def create_paragraphs(num=1, min_sentences=4, max_sentences=7):
             paragraphs.append(create_sentence()+" ")
         paragraphs.append("\n\n")
     return "".join(paragraphs)
+
+def create_nouns(max=2):
+    """
+    Return a string of random nouns up to max number
+    """
+    nouns = []
+    for noun in range(0, max):
+        nouns.append(random.choice(noun_list))
+    return " ".join(nouns)
 
 def create_date(numeric=True, past=False, max_years_future=10, max_years_past=10):
     """
