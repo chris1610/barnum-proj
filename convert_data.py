@@ -1,4 +1,3 @@
-#!/usr/bin/python2.5
 """
 This application converts the various text files stored in the source-data 
 directory into a pickled python object to be used by the random data
