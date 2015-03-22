@@ -15,16 +15,18 @@ You should have received a copy of the GNU General Public License along
 with this program; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 """
-
+from __future__ import print_function
 import cPickle as pickle
 import random
 import string
 import gencc
 import calendar
 import datetime
-import genpw
 import os
 import sys
+from time import time
+from itertools import chain
+from random import seed, choice, sample
 
 # In Windows, sometimes __file__ is undefined
 try:
@@ -172,25 +174,65 @@ def cc_number(card_type=None, length=None, num=1):
     length = 16
     return(card_type, gencc.credit_card_number(eval(prefix_list), length, num))
 
+def create_pw(length=8, digits=2, upper=2, lower=2):
+    """Create a random password
+    From Stackoverflow: 
+    http://stackoverflow.com/questions/7479442/high-quality-simple-random-password-generator
+
+    Create a random password with the specified length and no. of
+    digit, upper and lower case letters.
+
+    :param length: Maximum no. of characters in the password
+    :type length: int
+
+    :param digits: Minimum no. of digits in the password
+    :type digits: int
+
+    :param upper: Minimum no. of upper case letters in the password
+    :type upper: int
+
+    :param lower: Minimum no. of lower case letters in the password
+    :type lower: int
+
+    :returns: A random password with the above constaints
+    :rtype: str
+    """
+
+    seed(time())
+
+    lowercase = string.lowercase.translate(None, "o")
+    uppercase = string.uppercase.translate(None, "O")
+    letters = "{0:s}{1:s}".format(lowercase, uppercase)
+
+    password = list(
+        chain(
+            (choice(uppercase) for _ in range(upper)),
+            (choice(lowercase) for _ in range(lower)),
+            (choice(string.digits) for _ in range(digits)),
+            (choice(letters) for _ in range((length - digits - upper - lower)))
+        )
+    )
+
+    return "".join(sample(password, len(password)))
+
+
 if __name__ == "__main__":
     first, last = create_name()
     add = create_street()
     zip, city, state = create_city_state_zip()
     phone = create_phone(zip)
-    print first, last
-    print add
-    print "%s %s, %s" % (city, state,zip)
-    print phone
-    print create_sentence(), "\n"
-    print create_paragraphs(num=3)
+    print(first, last)
+    print(add)
+    print("{0:s} {1:s} {2:s}".format(city, state,zip))
+    print(phone)
+    print(create_sentence())
+    print(create_paragraphs(num=3))
     cc = cc_number()
-    print cc
+    print(cc)
     expiry = create_date(max_years_future=3)
-    print expiry.strftime("%m/%y")
-    print create_email(name=(first,last))
-    print "Password: ", genpw.nicepass()
-    print create_company_name()
-    print create_job_title()
-    print "Born on %s" % create_birthday().strftime("%m/%d/%Y")
-
-
+    print("{0:%m/%y}".format(expiry))
+    print(create_email(name=(first,last)))
+    print("Password: {0:s}".format(create_pw()))
+    print(create_company_name())
+    print(create_job_title())
+    print("Born on {0:%m/%d/%Y}".format(create_birthday()))
