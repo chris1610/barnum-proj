@@ -77,34 +77,34 @@ using Barnum.  If you run it from the command line:
 You'll see some sample data output.
 
 If you'd like to call it from another script, here's an example or two from the
-interpreter:
+interpreter::
 
-Python 2.4.2 (#1, Feb  9 2006, 05:29:30)
-[GCC 3.4.4 (Gentoo 3.4.4-r1, ssp-3.4.4-1.0, pie-8.7.8)] on linux2
-Type "help", "copyright", "credits" or "license" for more information.
->>> import barnum.gen_data as gen_data
->>> gen_data.create_name()
-('Danilo', 'Rendon')
->>> gen_data.create_name()
-('Melodie', 'Kraft')
->>> gen_data.create_name()
-('Laverne', 'Hopson')
->>> gen_data.create_city_state_zip()
-('36475', 'Repton', 'AL')
->>> gen_data.create_city_state_zip()
-('01090', 'West Springfield', 'MA')
->>> gen_data.create_phone()
-'(907)339-3308'
->>> gen_data.create_phone('38138')
-'(901)606-5635'
->>> gen_data.create_sentence()
-'Delenitaugue iriure zzril euismod dolore vulputate iriuredolor iriure eu.'
->>> gen_data.create_sentence()
-'Consequatvel in blandit praesent veniam in ex illum vulputate feugait molestie.'
->>> gen_data.cc_number()
-('visa', ['4532837148746906'])
->>> gen_data.cc_number()
-('mastercard', ['5417967544412568'])
+    Python 2.4.2 (#1, Feb  9 2006, 05:29:30)
+    [GCC 3.4.4 (Gentoo 3.4.4-r1, ssp-3.4.4-1.0, pie-8.7.8)] on linux2
+    Type "help", "copyright", "credits" or "license" for more information.
+    >>> import barnum.gen_data as gen_data
+    >>> gen_data.create_name()
+    ('Danilo', 'Rendon')
+    >>> gen_data.create_name()
+    ('Melodie', 'Kraft')
+    >>> gen_data.create_name()
+    ('Laverne', 'Hopson')
+    >>> gen_data.create_city_state_zip()
+    ('36475', 'Repton', 'AL')
+    >>> gen_data.create_city_state_zip()
+    ('01090', 'West Springfield', 'MA')
+    >>> gen_data.create_phone()
+    '(907)339-3308'
+    >>> gen_data.create_phone('38138')
+    '(901)606-5635'
+    >>> gen_data.create_sentence()
+    'Delenitaugue iriure zzril euismod dolore vulputate iriuredolor iriure eu.'
+    >>> gen_data.create_sentence()
+    'Consequatvel in blandit praesent veniam in ex illum vulputate feugait molestie.'
+    >>> gen_data.cc_number()
+    ('visa', ['4532837148746906'])
+    >>> gen_data.cc_number()
+    ('mastercard', ['5417967544412568'])
 
 
 You can see that it should be trivial to incorporate this data into any python script.
