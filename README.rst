@@ -173,8 +173,8 @@ pickle file.
 How can I contribute?
 =====================
 
-Just ask. I can't forsee this script needing it's own mailing list so right now, use the ticket
-system on google code to submit a ticket with your suggestion/patch.
+I've moved the code to github to make it easier for others to contribute. Feel
+free to send pull requests or submit tickets.
 
 Why is this so US focused?
 ==========================
