@@ -84,6 +84,10 @@ Here's a list of types of dummy data Barnum can create:
  - Words (latin)
  - Sentences and/or paragraphs of random latin words
 
+What version of python do I need?
+=================================
+Barnum should work on python 2.7.x and python 3.x
+
 How do I use it?
 ================
 
@@ -97,32 +101,48 @@ You'll see some sample data output.
 If you'd like to call it from another script, here's an example or two from the
 interpreter::
 
-    Python 2.4.2 (#1, Feb  9 2006, 05:29:30)
-    [GCC 3.4.4 (Gentoo 3.4.4-r1, ssp-3.4.4-1.0, pie-8.7.8)] on linux2
+    Python 2.7.6 (default, Mar 22 2014, 22:59:56) 
+    [GCC 4.8.2] on linux2
     Type "help", "copyright", "credits" or "license" for more information.
-    >>> import barnum.gen_data as gen_data
+    >>> import gen_data
     >>> gen_data.create_name()
-    ('Danilo', 'Rendon')
+    ('Dianna', 'Macpherson')
     >>> gen_data.create_name()
-    ('Melodie', 'Kraft')
+    ('Dessie', 'Badillo')
     >>> gen_data.create_name()
-    ('Laverne', 'Hopson')
+    ('Dorsey', 'Knox')
     >>> gen_data.create_city_state_zip()
-    ('36475', 'Repton', 'AL')
+    ('36874', 'Salem', 'AL')
     >>> gen_data.create_city_state_zip()
-    ('01090', 'West Springfield', 'MA')
+    ('33034', 'Homestead', 'FL')
     >>> gen_data.create_phone()
-    '(907)339-3308'
+    '(802)560-6944'
+    >>> gen_data.create_phone()
+    '(959)430-3436'
     >>> gen_data.create_phone('38138')
-    '(901)606-5635'
+    '(931)679-1579'
     >>> gen_data.create_sentence()
-    'Delenitaugue iriure zzril euismod dolore vulputate iriuredolor iriure eu.'
+    'Ut feugiat feugait vero consequatvel ex ullamcorper.'
     >>> gen_data.create_sentence()
-    'Consequatvel in blandit praesent veniam in ex illum vulputate feugait molestie.'
+    'Qui exerci molestie augue consequat lorem iusto ut duis ea veniam vel.'
     >>> gen_data.cc_number()
-    ('visa', ['4532837148746906'])
+    ('mastercard', ['5245893611343643'])
     >>> gen_data.cc_number()
-    ('mastercard', ['5417967544412568'])
+    ('discover', ['6011818325460433'])
+    >>> gen_data.create_nouns()
+    'eyebrow scraper'
+    >>> gen_data.create_nouns()
+    'loan comics'
+    >>> gen_data.create_date()
+    datetime.datetime(2024, 12, 27, 20, 1, 10, 343660)
+    >>> gen_data.create_date(past=True)
+    datetime.datetime(2014, 10, 13, 20, 1, 20, 159341)
+    >>> gen_data.create_email()
+    'Carrol.Zavala@facilisisiusto.tv'
+    >>> gen_data.create_company_name()
+    'Design International'
+    >>> gen_data.create_pw()
+    'vm6qV2iR'
 
 
 You can see that it should be trivial to incorporate this data into any python script.

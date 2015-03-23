@@ -16,7 +16,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 """
 from __future__ import print_function
-import cPickle as pickle
+import pickle
 import random
 import string
 import gencc
@@ -85,12 +85,12 @@ def create_street():
 
 def create_city_state_zip(zip_code=None):
     if not zip_code:
-        zip_code = random.choice(all_zips.keys())
+        zip_code = random.choice(list(all_zips))
     return(zip_code, all_zips[zip_code][0], all_zips[zip_code][1])
 
 def create_sentence(min=4, max=15):
     sentence = []
-    sentence.append(string.capitalize(random.choice(latin_words)))
+    sentence.append(random.choice(latin_words).capitalize())
     for word in range(1, random.randint(min, max-1)):
         sentence.append(random.choice(latin_words))
     return " ".join(sentence) + "."
@@ -200,10 +200,9 @@ def create_pw(length=8, digits=2, upper=2, lower=2):
 
     seed(time())
 
-    lowercase = string.lowercase.translate(None, "o")
-    uppercase = string.uppercase.translate(None, "O")
-    letters = "{0:s}{1:s}".format(lowercase, uppercase)
-
+    lowercase = string.ascii_lowercase
+    uppercase = string.ascii_uppercase
+    letters = string.ascii_letters
     password = list(
         chain(
             (choice(uppercase) for _ in range(upper)),

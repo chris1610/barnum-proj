@@ -19,7 +19,7 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 """
-
+from __future__ import print_function
 import random
 import sys
 import copy
@@ -142,34 +142,34 @@ def output(title, numbers):
 if __name__ == "__main__":
 
     mastercard = credit_card_number(mastercardPrefixList, 16, 10)
-    print output("Mastercard", mastercard)
+    print(output("Mastercard", mastercard))
 
     visa16 = credit_card_number(visaPrefixList, 16, 10)
-    print output("VISA 16 digit", visa16)
+    print(output("VISA 16 digit", visa16))
 
     visa13 = credit_card_number(visaPrefixList, 13, 5)
-    print output("VISA 13 digit", visa13)
+    print(output("VISA 13 digit", visa13))
 
     amex = credit_card_number(amexPrefixList, 15, 5)
-    print output("American Express", amex)
+    print(output("American Express", amex))
 
     # Minor cards
 
     discover = credit_card_number(discoverPrefixList, 16, 3)
-    print output("Discover", discover)
+    print(output("Discover", discover))
 
     diners = credit_card_number(dinersPrefixList, 14, 3)
-    print output("Diners Club / Carte Blanche", diners)
+    print(output("Diners Club / Carte Blanche", diners))
 
     enRoute = credit_card_number(enRoutePrefixList, 15, 3)
-    print output("enRoute", enRoute)
+    print(output("enRoute", enRoute))
 
     jcb15 = credit_card_number(jcbPrefixList15, 15, 3)
-    print output("JCB 15 digit", jcb15)
+    print(output("JCB 15 digit", jcb15))
 
     jcb16 = credit_card_number(jcbPrefixList16, 16, 3)
-    print output("JCB 16 digit", jcb16)
+    print(output("JCB 16 digit", jcb16))
 
     voyager = credit_card_number(voyagerPrefixList, 15, 3)
-    print output("Voyager", voyager)
+    print(output("Voyager", voyager))
 
