@@ -66,6 +66,11 @@ time there have been some other python solutions.
 I think `fake factory <https://pypi.python.org/pypi/fake-factory>`_ is one of
 the best out there and provides a lot more options than barnum.
 
+However, Barnum still has some unique aspects, specifically having some
+"intelligence" as to how the data is related and the flexibility you have
+to easily customize the data by adding or subtracting to the data in the
+**source-data** directory.
+
 
 What type of information does Barnum generate?
 ==============================================
