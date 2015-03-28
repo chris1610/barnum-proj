@@ -112,7 +112,7 @@ def create_nouns(max=2):
         nouns.append(random.choice(noun_list))
     return " ".join(nouns)
 
-def create_date(numeric=True, past=False, max_years_future=10, max_years_past=10):
+def create_date(past=False, max_years_future=10, max_years_past=10):
     """
     Create a random valid date
     If past, then dates can be in the past
@@ -151,7 +151,7 @@ def create_email(tld=None, name=None):
 def create_company_name(biz_type=None):
     name = []
     if not biz_type:
-        biz_type = random.choice(company_type)
+        biz_type = random.choice(company_types)
     if biz_type == "LawFirm":
         name.append( random.choice(last_names)+ ", " + random.choice(last_names) + " & " + 
                      random.choice(last_names))
