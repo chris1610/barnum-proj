@@ -93,6 +93,11 @@ What version of python do I need?
 =================================
 Barnum should work on python 2.7.x and python 3.x
 
+How do I install it?
+====================
+
+pip install barnum
+
 How do I use it?
 ================
 
@@ -109,7 +114,7 @@ interpreter::
     Python 2.7.6 (default, Mar 22 2014, 22:59:56) 
     [GCC 4.8.2] on linux2
     Type "help", "copyright", "credits" or "license" for more information.
-    >>> import gen_data
+    >>> from barnum import gen_data
     >>> gen_data.create_name()
     ('Dianna', 'Macpherson')
     >>> gen_data.create_name()
