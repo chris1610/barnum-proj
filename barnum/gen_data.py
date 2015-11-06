@@ -15,11 +15,11 @@ You should have received a copy of the GNU General Public License along
 with this program; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 """
-from __future__ import print_function
+from __future__ import print_function, absolute_import
 import pickle
 import random
 import string
-import gencc
+from . import gencc
 import calendar
 import datetime
 import os
@@ -69,7 +69,7 @@ def create_name(full_name=True, gender=None):
 
 def create_job_title():
     return random.choice(job_titles)
-    
+
 def create_phone(zip_code=None):
     if not zip_code:
         zip_code = random.choice(all_zips.keys())
@@ -94,7 +94,7 @@ def create_sentence(min=4, max=15):
     for word in range(1, random.randint(min, max-1)):
         sentence.append(random.choice(latin_words))
     return " ".join(sentence) + "."
-    
+
 def create_paragraphs(num=1, min_sentences=4, max_sentences=7):
     paragraphs = []
     for para in range(0, num):
@@ -126,9 +126,9 @@ def create_date(past=False, max_years_future=10, max_years_past=10):
     else:
         start = datetime.datetime.today()
         num_days = max_years_future * 365
-        
+
     random_days = random.randint(1, num_days)
-    random_date = start + datetime.timedelta(days=random_days)    
+    random_date = start + datetime.timedelta(days=random_days)
     return(random_date)
 
 def create_birthday(min_age=18, max_age=80):
@@ -153,7 +153,7 @@ def create_company_name(biz_type=None):
     if not biz_type:
         biz_type = random.choice(company_types)
     if biz_type == "LawFirm":
-        name.append( random.choice(last_names)+ ", " + random.choice(last_names) + " & " + 
+        name.append( random.choice(last_names)+ ", " + random.choice(last_names) + " & " +
                      random.choice(last_names))
         name.append('LLP')
     else:
@@ -176,7 +176,7 @@ def cc_number(card_type=None, length=None, num=1):
 
 def create_pw(length=8, digits=2, upper=2, lower=2):
     """Create a random password
-    From Stackoverflow: 
+    From Stackoverflow:
     http://stackoverflow.com/questions/7479442/high-quality-simple-random-password-generator
 
     Create a random password with the specified length and no. of
