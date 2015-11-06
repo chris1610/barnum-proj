@@ -20,7 +20,6 @@ import pickle
 import random
 import string
 from . import gencc
-import calendar
 import datetime
 import os
 import sys
@@ -34,11 +33,11 @@ try:
 except NameError:
     DIRNAME = os.path.dirname(sys.argv[0])
 
-gender_options=('Male','Female')
+gender_options = ('Male', 'Female')
 company_type = ('LawFirm', 'Generic', 'Short')
 card_types = ('mastercard', 'visa', 'discover', 'amex')
 
-source_file = open(os.path.join(DIRNAME,"source-data.pkl"),'rb')
+source_file = open(os.path.join(DIRNAME, "source-data.pkl"), 'rb')
 all_zips = pickle.load(source_file)
 state_area_codes = pickle.load(source_file)
 last_names = pickle.load(source_file)
@@ -55,6 +54,7 @@ noun_list = pickle.load(source_file)
 
 source_file.close()
 
+
 def create_name(full_name=True, gender=None):
     if not gender:
         gender = random.choice(gender_options)
@@ -67,41 +67,48 @@ def create_name(full_name=True, gender=None):
     else:
         return(first_name)
 
+
 def create_job_title():
     return random.choice(job_titles)
+
 
 def create_phone(zip_code=None):
     if not zip_code:
         zip_code = random.choice(all_zips.keys())
     area_code = random.choice(state_area_codes[all_zips[zip_code][1]])
-    output = "(%s)%s-%s" % (area_code, random.randint(111,999), random.randint(1111,9999))
+    output = "(%s)%s-%s" % (area_code, random.randint(111, 999), random.randint(1111, 9999))
     return(output)
 
+
 def create_street():
-    number = random.randint(1,9999)
+    number = random.randint(1, 9999)
     name = string.capwords(random.choice(street_names))
     street_type = string.capwords(random.choice(street_types))
     return("%s %s %s" % (number, name, street_type))
+
 
 def create_city_state_zip(zip_code=None):
     if not zip_code:
         zip_code = random.choice(list(all_zips))
     return(zip_code, all_zips[zip_code][0], all_zips[zip_code][1])
 
+
 def create_sentence(min=4, max=15):
     sentence = []
     sentence.append(random.choice(latin_words).capitalize())
-    for word in range(1, random.randint(min, max-1)):
+    for word in range(1, random.randint(min, max - 1)):
         sentence.append(random.choice(latin_words))
     return " ".join(sentence) + "."
+
 
 def create_paragraphs(num=1, min_sentences=4, max_sentences=7):
     paragraphs = []
     for para in range(0, num):
         for sentence in range(1, random.randint(min_sentences, max_sentences)):
-            paragraphs.append(create_sentence()+" ")
+            paragraphs.append(create_sentence() + " ")
         paragraphs.append("\n\n")
     return "".join(paragraphs)
+
 
 def create_nouns(max=2):
     """
@@ -111,6 +118,7 @@ def create_nouns(max=2):
     for noun in range(0, max):
         nouns.append(random.choice(noun_list))
     return " ".join(nouns)
+
 
 def create_date(past=False, max_years_future=10, max_years_past=10):
     """
@@ -131,33 +139,36 @@ def create_date(past=False, max_years_future=10, max_years_past=10):
     random_date = start + datetime.timedelta(days=random_days)
     return(random_date)
 
+
 def create_birthday(min_age=18, max_age=80):
     """
     Create a random birthday fomr someone between the ages of min_age and max_age
     """
     age = random.randint(min_age, max_age)
     start = datetime.date.today() - datetime.timedelta(days=random.randint(0, 365))
-    return start - datetime.timedelta(days=age*365)
+    return start - datetime.timedelta(days=age * 365)
+
 
 def create_email(tld=None, name=None):
     if not name:
         name = create_name()
     if not tld:
         tld = random.choice(email_domains)
-    user_choices = ["%s.%s" % (name[0],name[1]), "%s" % name[0], "%s.%s" % (name[0][:1], name[1])]
+    user_choices = ["%s.%s" % (name[0], name[1]), "%s" % name[0], "%s.%s" % (name[0][:1], name[1])]
     domain = random.choice(latin_words) + random.choice(latin_words)
     return ("%s@%s.%s" % (random.choice(user_choices), domain, tld))
+
 
 def create_company_name(biz_type=None):
     name = []
     if not biz_type:
         biz_type = random.choice(company_types)
     if biz_type == "LawFirm":
-        name.append( random.choice(last_names)+ ", " + random.choice(last_names) + " & " +
-                     random.choice(last_names))
+        name.append(random.choice(last_names) + ", " + random.choice(last_names) + " & " +
+                    random.choice(last_names))
         name.append('LLP')
     else:
-        for i in range(1,random.randint(2,4)):
+        for i in range(1, random.randint(2,4)):
             rand_name = random.choice(company_names)
             if rand_name not in name:
                 name.append(rand_name)
@@ -167,12 +178,14 @@ def create_company_name(biz_type=None):
             name.append(random.choice(company_names))
     return " ".join(name)
 
+
 def cc_number(card_type=None, length=None, num=1):
     if not card_type:
         card_type = random.choice(card_types)
     prefix_list = "gencc." + card_type + "PrefixList"
     length = 16
     return(card_type, gencc.credit_card_number(eval(prefix_list), length, num))
+
 
 def create_pw(length=8, digits=2, upper=2, lower=2):
     """Create a random password
@@ -222,7 +235,7 @@ if __name__ == "__main__":
     phone = create_phone(zip)
     print(first, last)
     print(add)
-    print("{0:s} {1:s} {2:s}".format(city, state,zip))
+    print("{0:s} {1:s} {2:s}".format(city, state, zip))
     print(phone)
     print(create_sentence())
     print(create_paragraphs(num=3))
@@ -230,7 +243,7 @@ if __name__ == "__main__":
     print(cc)
     expiry = create_date(max_years_future=3)
     print("{0:%m/%y}".format(expiry))
-    print(create_email(name=(first,last)))
+    print(create_email(name=(first, last)))
     print("Password: {0:s}".format(create_pw()))
     print(create_company_name())
     print(create_job_title())
