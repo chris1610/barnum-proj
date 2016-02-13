@@ -20,19 +20,24 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 """
 
-
+from builtins import input
 import csv
 import string
 import pickle
 import os
 
-data_dir = "source-data"
+try:
+    DIRNAME = os.path.dirname(__file__)
+except NameError:
+    DIRNAME = os.path.dirname(sys.argv[0])
+
+data_dir = os.path.join(DIRNAME, "source-data")
 simple_files_to_process = ['street-names.txt', 'street-types.txt', 'latin-words.txt',
                            'email-domains.txt', 'job-titles.txt', 'company-names.txt',
                            'company-types.txt', 'nounlist.txt']
 
 
-def load_files():
+def _load_files():
     # Process Zip Codes
     all_zips = {}
     reader = csv.reader(open(os.path.join(data_dir, "zip-codes.txt"), "r"))
@@ -90,11 +95,9 @@ def load_files():
         temp = []
     output.close()
 
-if __name__ == "__main__":
-    try:
-        input = raw_input
-    except NameError:
-        pass
+def rebuild_pkl_file():
+    """ Rebuild the pickle file that contains the source data
+    """
     response = input("Type 'yes' to reload the data from source files and create a new source file: ")
     if response.lower() == 'yes':
-        load_files()
+        _load_files()

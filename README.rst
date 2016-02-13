@@ -1,17 +1,17 @@
 What is Barnum?
 ===============
 
-Barnum is a python-based application for quickly and easily creating 
+Barnum is a python-based application for quickly and easily creating
 pseudo-random data typically used for application testing.
 
 Why did you create Barnum?
 ==========================
 
-I am developing a shopping cart application in Django and realized that I 
-needed a bunch of data to simulate the store's behavior under somewhat normal 
-production usage.  
+I am developing a shopping cart application in Django and realized that I
+needed a bunch of data to simulate the store's behavior under somewhat normal
+production usage.
 
-I got tired of always trying to think of names and addresses for customers and 
+I got tired of always trying to think of names and addresses for customers and
 so decided to automate the process a little bit.  Such was born Barnum.
 
 This looks kind of old, what's the deal?
@@ -25,15 +25,15 @@ to github to see if it is useful to anyone else.
 Why is Barnum unique?
 =====================
 
-I was able to find some online systems for generating large amounts of test 
-data.  I could not find any application that had the breadth of data generation 
-capabilities nor the ability to easily interface with Django in the way I 
+I was able to find some online systems for generating large amounts of test
+data.  I could not find any application that had the breadth of data generation
+capabilities nor the ability to easily interface with Django in the way I
 wanted to.
 
 One of the most unique aspects of Barnum is that the data is what I'll call
 "plausible."  For example, here's an example "identity" randomly generated
 from Barnum:
-    
+
     Sid Seymour
     10 Kimbrough Grove Drive
     Arthur ND, 58006
@@ -46,7 +46,7 @@ You should notice a couple of things about this data.
  - There's a realistic first and last name
  - The street names are also plausible
  - Arthur, ND is a real city and the zip code is 58006
- - 701 is an area code used for North Dakota 
+ - 701 is an area code used for North Dakota
  - The fictional company is somewhat reasonable.
  - The job position also makes sense.
 
@@ -101,59 +101,53 @@ pip install barnum
 
 How do I use it?
 ================
+There has been a change in the most recent version of barnum to make the
+code more pythonic.
 
-The gen_data.py script is the primary showcase for how to create random data
-using Barnum.  If you run it from the command line:
-
- python gen_data.py
- 
-You'll see some sample data output.
+The recommended method is to import barnum and call the functions from your
+own script.
 
 If you'd like to call it from another script, here's an example or two from the
 interpreter::
 
-    Python 2.7.6 (default, Mar 22 2014, 22:59:56) 
-    [GCC 4.8.2] on linux2
+    Python 3.5.1 |Continuum Analytics, Inc.| (default, Dec  7 2015, 11:16:01)
+    [GCC 4.4.7 20120313 (Red Hat 4.4.7-1)] on linux
     Type "help", "copyright", "credits" or "license" for more information.
-    >>> from barnum import gen_data
-    >>> gen_data.create_name()
-    ('Dianna', 'Macpherson')
-    >>> gen_data.create_name()
-    ('Dessie', 'Badillo')
-    >>> gen_data.create_name()
-    ('Dorsey', 'Knox')
-    >>> gen_data.create_city_state_zip()
-    ('36874', 'Salem', 'AL')
-    >>> gen_data.create_city_state_zip()
-    ('33034', 'Homestead', 'FL')
-    >>> gen_data.create_phone()
-    '(802)560-6944'
-    >>> gen_data.create_phone()
-    '(959)430-3436'
-    >>> gen_data.create_phone('38138')
-    '(931)679-1579'
-    >>> gen_data.create_sentence()
-    'Ut feugiat feugait vero consequatvel ex ullamcorper.'
-    >>> gen_data.create_sentence()
-    'Qui exerci molestie augue consequat lorem iusto ut duis ea veniam vel.'
-    >>> gen_data.cc_number()
-    ('mastercard', ['5245893611343643'])
-    >>> gen_data.cc_number()
-    ('discover', ['6011818325460433'])
-    >>> gen_data.create_nouns()
-    'eyebrow scraper'
-    >>> gen_data.create_nouns()
-    'loan comics'
-    >>> gen_data.create_date()
-    datetime.datetime(2024, 12, 27, 20, 1, 10, 343660)
-    >>> gen_data.create_date(past=True)
-    datetime.datetime(2014, 10, 13, 20, 1, 20, 159341)
-    >>> gen_data.create_email()
-    'Carrol.Zavala@facilisisiusto.tv'
-    >>> gen_data.create_company_name()
-    'Design International'
-    >>> gen_data.create_pw()
-    'vm6qV2iR'
+    >>> import barnum
+    >>> barnum.create_name()
+    ('Isabel', 'Madigan')
+    >>> barnum.create_name()
+    ('Jesica', 'Loveless')
+    >>> barnum.create_city_state_zip()
+    ('54666', 'Warrens', 'WI')
+    >>> barnum.create_city_state_zip()
+    ('55113', 'Saint Paul', 'MN')
+    >>> barnum.create_phone()
+    '(716)248-1703'
+    >>> barnum.create_phone()
+    '(603)502-8450'
+    >>> barnum.create_phone('38138')
+    '(615)564-2637'
+    >>> barnum.create_sentence()
+    'In lobortis ut te at et feugiat ipsum vel ex feugiat eros.'
+    >>> barnum.create_sentence()
+    'In erat hendrerit at odio eu tincidunt exerci.'
+    >>> barnum.create_cc_number()
+    ('mastercard', ['5231056277792200'])
+    >>> barnum.create_cc_number()
+    ('visa', ['4929064950922570'])
+    >>> barnum.create_nouns()
+    'place blue'
+    >>> barnum.create_nouns()
+    'Steven clarinet'
+    >>> barnum.create_date()
+    datetime.datetime(2024, 2, 4, 9, 51, 38, 971944)
+    >>> barnum.create_date(past=True)
+    datetime.datetime(2006, 9, 23, 9, 51, 46, 927690)
+    >>> barnum.create_email()
+    'Dalton.Segal@luptatumdelenitaugue.org'
+    >>> barnum.create_pw()
+    'naPTg67M'
 
 
 You can see that it should be trivial to incorporate this data into any python script.
@@ -164,7 +158,7 @@ Where does the data come from?
 ==============================
 
 I pulled sample data and existing scripts from a bunch of different sources. It looks like a lot
-of the sources are now dead links.  
+of the sources are now dead links.
 
  - The names are from 1990 US Census data
  - The street names are from real us streets in a few locales.
@@ -208,7 +202,7 @@ Where did this name come from?
 
 Choosing names for projects is kind of fun but kind of a hassle.  There needs to be a name
 but it can't be anything too stupid.  I started off thinking of an acronym and ended up with
-PT ("Python Testing") and immediately thought of P.T. Barnum.  I really liked the name 
+PT ("Python Testing") and immediately thought of P.T. Barnum.  I really liked the name
 because I was using this for Satchmo and project made in Django.  Single word names seemed
 cool.  Also, I like the fact that P.T. Barnum was really a master at making people think
 something was real that wasn't.  Which is exactly what this little script does.

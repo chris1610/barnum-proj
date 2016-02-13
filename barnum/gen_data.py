@@ -27,6 +27,8 @@ from time import time
 from itertools import chain
 from random import seed, choice, sample
 
+random.seed()
+
 # In Windows, sometimes __file__ is undefined
 try:
     DIRNAME = os.path.dirname(__file__)
@@ -37,23 +39,20 @@ gender_options = ('Male', 'Female')
 company_type = ('LawFirm', 'Generic', 'Short')
 card_types = ('mastercard', 'visa', 'discover', 'amex')
 
-source_file = open(os.path.join(DIRNAME, "source-data.pkl"), 'rb')
-all_zips = pickle.load(source_file)
-state_area_codes = pickle.load(source_file)
-last_names = pickle.load(source_file)
-male_first_names = pickle.load(source_file)
-female_first_names = pickle.load(source_file)
-street_names = pickle.load(source_file)
-street_types = pickle.load(source_file)
-latin_words = pickle.load(source_file)
-email_domains = pickle.load(source_file)
-job_titles = pickle.load(source_file)
-company_names = pickle.load(source_file)
-company_types = pickle.load(source_file)
-noun_list = pickle.load(source_file)
-
-source_file.close()
-
+with open(os.path.join(DIRNAME, "source-data.pkl"), 'rb') as source_file:
+    all_zips = pickle.load(source_file)
+    state_area_codes = pickle.load(source_file)
+    last_names = pickle.load(source_file)
+    male_first_names = pickle.load(source_file)
+    female_first_names = pickle.load(source_file)
+    street_names = pickle.load(source_file)
+    street_types = pickle.load(source_file)
+    latin_words = pickle.load(source_file)
+    email_domains = pickle.load(source_file)
+    job_titles = pickle.load(source_file)
+    company_names = pickle.load(source_file)
+    company_types = pickle.load(source_file)
+    noun_list = pickle.load(source_file)
 
 def create_name(full_name=True, gender=None):
     if not gender:
@@ -74,7 +73,7 @@ def create_job_title():
 
 def create_phone(zip_code=None):
     if not zip_code:
-        zip_code = random.choice(all_zips.keys())
+        zip_code = random.choice(list(all_zips))
     area_code = random.choice(state_area_codes[all_zips[zip_code][1]])
     output = "(%s)%s-%s" % (area_code, random.randint(111, 999), random.randint(1111, 9999))
     return(output)
@@ -179,7 +178,7 @@ def create_company_name(biz_type=None):
     return " ".join(name)
 
 
-def cc_number(card_type=None, length=None, num=1):
+def create_cc_number(card_type=None, length=None, num=1):
     if not card_type:
         card_type = random.choice(card_types)
     prefix_list = "gencc." + card_type + "PrefixList"
@@ -227,8 +226,9 @@ def create_pw(length=8, digits=2, upper=2, lower=2):
 
     return "".join(sample(password, len(password)))
 
-
-if __name__ == "__main__":
+def show_examples():
+    """ Run through some simple examples
+    """
     first, last = create_name()
     add = create_street()
     zip, city, state = create_city_state_zip()
@@ -239,8 +239,7 @@ if __name__ == "__main__":
     print(phone)
     print(create_sentence())
     print(create_paragraphs(num=3))
-    cc = cc_number()
-    print(cc)
+    print(create_cc_number())
     expiry = create_date(max_years_future=3)
     print("{0:%m/%y}".format(expiry))
     print(create_email(name=(first, last)))
