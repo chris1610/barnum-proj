@@ -153,7 +153,7 @@ def create_email(tld=None, name=None):
         name = create_name()
     if not tld:
         tld = random.choice(email_domains)
-    user_choices = ["%s.%s" % (name[0], name[1]), "%s" % name[0], "%s.%s" % (name[0][:1], name[1])]
+    user_choices = ["%s.%s" % (name[0], name[1]), "%s" % name[0], "%s.%s" % (name[0][:1], name[1]), "%s%s" %(random.choice(noun_list)+random.choice(noun_list), random.randint(0,9999))]
     domain = random.choice(latin_words) + random.choice(latin_words)
     return ("%s@%s.%s" % (random.choice(user_choices), domain, tld))
 
