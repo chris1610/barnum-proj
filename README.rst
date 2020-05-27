@@ -1,3 +1,5 @@
+.. image:: https://img.shields.io/pypi/dw/barnum?style=flat-square   :alt: PyPI - Downloads
+
 What is Barnum?
 ===============
 
